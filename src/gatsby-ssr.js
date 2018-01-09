@@ -7,7 +7,7 @@ exports.onRenderBody = ({ setPostBodyComponents }, { channelPluginSettings }) =>
       key={`gatsby-plugin-channel`}
       dangerouslySetInnerHTML={{
         __html: stripIndent`
-          window.channelPluginSettings = ${JSON.stringify(channelPluginSettings)}
+          window.channelPluginSettings = ${JSON.stringify(channelPluginSettings)};
           (function() {
             var node = document.createElement('div');
             node.id = 'ch-plugin';
