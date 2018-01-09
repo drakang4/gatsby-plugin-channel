@@ -1,7 +1,7 @@
 import React from 'react';
 
 exports.onRouteUpdate = ({ location }, { pages }) => {
-  if (typeof pages === 'array') {
+  if (Array.isArray(pages)) {
     if (pages.includes(location)) {
       window.CHPlugin.show();
     } else {
