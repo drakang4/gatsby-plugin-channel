@@ -7,8 +7,19 @@ exports.onRenderBody = ({ setPostBodyComponents }, { channelPluginSettings }) =>
       key={`gatsby-plugin-channel`}
       dangerouslySetInnerHTML={{
         __html: stripIndent`
-          window.channelPluginSettings = ${JSON.stringify(channelPluginSettings)};
           (function() {
+            if (window.CHPlugin) {
+              return window.console && console.error && console.error('Channel Plugin script included twice.');
+            }
+            var ch = { q: [] };
+            ['initialize', 'checkIn', 'checkOut', 'show', 'hide', 'track', 'timeTrack', 'on'].forEach(function(e) {
+              ch[e] = function() {
+                var n = Array.prototype.slice.call(arguments);
+                n.unshift(e);
+                ch.q.push(n);
+              }
+            });
+            window.CHPlugin = ch;
             var node = document.createElement('div');
             node.id = 'ch-plugin';
             document.body.appendChild(node);
@@ -27,6 +38,8 @@ exports.onRenderBody = ({ setPostBodyComponents }, { channelPluginSettings }) =>
               window.addEventListener('load', async_load, false);
             }
           })();
+
+          window.CHPlugin.initialize(${JSON.stringify(channelPluginSettings)});
         `}}
     />),
   ]);
