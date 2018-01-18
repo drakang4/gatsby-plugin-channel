@@ -3,7 +3,7 @@ import { stripIndent } from 'common-tags';
 
 exports.onRenderBody = ({ setPostBodyComponents }, { channelPluginSettings }) => {
   return setPostBodyComponents([
-    (<script
+    <script
       key={`gatsby-plugin-channel`}
       dangerouslySetInnerHTML={{
         __html: stripIndent`
@@ -39,8 +39,11 @@ exports.onRenderBody = ({ setPostBodyComponents }, { channelPluginSettings }) =>
             }
           })();
 
-          window.CHPlugin.initialize(${JSON.stringify(channelPluginSettings)});
-        `}}
-    />),
+          window.CHPlugin.initialize(${JSON.stringify(
+            channelPluginSettings
+          )});
+        `
+      }}
+    />
   ]);
 };
