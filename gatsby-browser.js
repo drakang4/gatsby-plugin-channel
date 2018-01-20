@@ -11,10 +11,11 @@ exports.onRouteUpdate = function (_ref, _ref2) {
   var pages = _ref2.pages;
 
   if (window.CHPlugin && Array.isArray(pages)) {
+    var button = document.getElementById('ch-plugin-button-position');
     if (pages.indexOf(location.pathname) === -1) {
-      window.CHPlugin.checkOut();
+      button.style.display = 'none';
     } else {
-      window.CHPlugin.checkIn();
+      button.style.display = 'block';
     }
   }
 };

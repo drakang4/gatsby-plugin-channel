@@ -42,6 +42,8 @@ exports.onRenderBody = ({ setPostBodyComponents }, { channelPluginSettings }) =>
           window.CHPlugin.initialize(${JSON.stringify(
             channelPluginSettings
           )});
+
+          window.CHPlugin.checkIn();
         `
       }}
     />
