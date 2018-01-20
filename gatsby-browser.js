@@ -10,9 +10,11 @@ exports.onRouteUpdate = function (_ref, _ref2) {
   var location = _ref.location;
   var pages = _ref2.pages;
 
-  if (window.CHPlugin) {
-    if (Array.isArray(pages) && pages.indexOf(location) === -1) {
+  if (window.CHPlugin && Array.isArray(pages)) {
+    if (pages.indexOf(location.pathname) === -1) {
       window.CHPlugin.checkOut();
+    } else {
+      window.CHPlugin.checkIn();
     }
   }
 };
