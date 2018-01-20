@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-channel",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Gatsby plugin to integrate Channel.io on your project.",
   "author": "Heeryong Kang <drakang4@gmail.com>",
   "repository": {
