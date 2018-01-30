@@ -1,12 +1,19 @@
 import React from 'react';
+import pathToRegexp from 'path-to-regexp';
 
 exports.onRouteUpdate = ({ location }, { pages }) => {
   if (window.CHPlugin && Array.isArray(pages)) {
     const button = document.getElementById('ch-plugin');
-    if (pages.indexOf(location.pathname) === -1) {
-      button.style.display = 'none';
-    } else {
-      button.style.display = 'block';
+    
+    if (button) {
+      const pathsRegex = pages.map(page => pathToRegexp(page));
+      const isMatch = pathsRegex.some(regex => regex.test(location));
+
+      if (isMatch) {
+        button.style.display = 'none';
+      } else {
+        button.style.display = 'block';
+      }
     }
   }
 };
