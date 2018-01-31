@@ -10,9 +10,9 @@ exports.onRouteUpdate = ({ location }, { pages }) => {
       const isMatch = pathsRegex.some(regex => regex.test(location));
 
       if (isMatch) {
-        button.style.display = 'none';
-      } else {
         button.style.display = 'block';
+      } else {
+        button.style.display = 'none';
       }
     }
   }

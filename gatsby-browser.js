@@ -26,9 +26,9 @@ exports.onRouteUpdate = function (_ref, _ref2) {
       });
 
       if (isMatch) {
-        button.style.display = 'none';
-      } else {
         button.style.display = 'block';
+      } else {
+        button.style.display = 'none';
       }
     }
   }
