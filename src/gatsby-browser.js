@@ -7,7 +7,7 @@ exports.onRouteUpdate = ({ location }, { pages }) => {
     
     if (button) {
       const pathsRegex = pages.map(page => pathToRegexp(page));
-      const isMatch = pathsRegex.some(regex => regex.test(location));
+      const isMatch = pathsRegex.some(regex => regex.test(location.pathname));
 
       if (isMatch) {
         button.style.display = 'block';

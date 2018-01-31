@@ -22,7 +22,7 @@ exports.onRouteUpdate = function (_ref, _ref2) {
         return (0, _pathToRegexp2.default)(page);
       });
       var isMatch = pathsRegex.some(function (regex) {
-        return regex.test(location);
+        return regex.test(location.pathname);
       });
 
       if (isMatch) {
