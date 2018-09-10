@@ -1,3 +1,4 @@
+import React from "react";
 import { stripIndent } from "common-tags";
 
 exports.onRenderBody = (

@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-channel",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Gatsby plugin to integrate Channel.io on your project.",
   "author": "Heeryong Kang <drakang4@gmail.com>",
   "repository": {
@@ -23,6 +23,7 @@
     "path-to-regexp": "^2.1.0"
   },
   "peerDependencies": {
-    "gatsby": ">2.0.0-alpha"
+    "gatsby": ">2.0.0-alpha",
+    "react": ">16"
   }
 }
