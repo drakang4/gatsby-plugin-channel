@@ -109,4 +109,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-build
+/*.js
+!index.js

@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "babel src --out-dir build"
+    "build": "babel src --out-dir ."
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
