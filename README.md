@@ -14,13 +14,8 @@ plugins: [
   {
     resolve: `gatsby-plugin-channel`,
     options: {
-      pages: [
-        '/pageone',
-        '/pagetwo',
-        ...
-      ]
       channelPluginSettings: {
-        pluginKey: 'plugin-key',
+        pluginKey: 'YOUR_PLUGIN_KEY',
         ...
       },
     },
@@ -30,6 +25,4 @@ plugins: [
 
 ### Configuration
 
-`pages` is an array of locations to show Channel button.
-
-You can find all `channelPluginSettings` options in [official Channel documentation](https://developers.channel.io/docs/channelpluginsettings).
+You can find all `channelPluginSettings` options in [official Channel documentation](https://developers.channel.io/docs/web-channelpluginsettings).

@@ -1,49 +1,53 @@
-import React from 'react';
-import { stripIndent } from 'common-tags';
+import { stripIndent } from "common-tags";
 
-exports.onRenderBody = ({ setPostBodyComponents }, { channelPluginSettings }) => {
-  return setPostBodyComponents([
+exports.onRenderBody = (
+  { setPreBodyComponents },
+  { channelPluginSettings }
+) => {
+  setPreBodyComponents([
     <script
       key={`gatsby-plugin-channel`}
       dangerouslySetInnerHTML={{
         __html: stripIndent`
+          ;window.channelPluginSettings = ${JSON.stringify(
+            channelPluginSettings
+          )};
           (function() {
-            if (window.CHPlugin) {
-              return window.console && console.error && console.error('Channel Plugin script included twice.');
+            var w = window;
+            if (w.ChannelIO) {
+              return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
             }
-            var ch = { q: [] };
-            ['initialize', 'checkIn', 'checkOut', 'show', 'hide', 'track', 'timeTrack', 'on'].forEach(function(e) {
-              ch[e] = function() {
-                var n = Array.prototype.slice.call(arguments);
-                n.unshift(e);
-                ch.q.push(n);
+            var d = window.document;
+            var ch = function() {
+              ch.c(arguments);
+            };
+            ch.q = [];
+            ch.c = function(args) {
+              ch.q.push(args);
+            };
+            w.ChannelIO = ch;
+            function l() {
+              if (w.ChannelIOInitialized) {
+                return;
               }
-            });
-            window.CHPlugin = ch;
-            var node = document.createElement('div');
-            node.id = 'ch-plugin';
-            document.body.appendChild(node);
-            var async_load = function() {
+              w.ChannelIOInitialized = true;
               var s = document.createElement('script');
               s.type = 'text/javascript';
               s.async = true;
-              s.src = '//cdn.channel.io/plugin/ch-plugin-web.js';
+              s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
               s.charset = 'UTF-8';
               var x = document.getElementsByTagName('script')[0];
               x.parentNode.insertBefore(s, x);
-            };
-            if (window.attachEvent) {
-              window.attachEvent('onload', async_load);
+            }
+            if (document.readyState === 'complete') {
+              l();
+            } else if (window.attachEvent) {
+              window.attachEvent('onload', l);
             } else {
-              window.addEventListener('load', async_load, false);
+              window.addEventListener('DOMContentLoaded', l, false);
+              window.addEventListener('load', l, false);
             }
           })();
-
-          window.CHPlugin.initialize(${JSON.stringify(
-            channelPluginSettings
-          )});
-
-          window.CHPlugin.checkIn();
         `
       }}
     />
